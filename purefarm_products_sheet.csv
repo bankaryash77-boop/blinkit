@@ -1,0 +1,20 @@
+id,name,price,oldPrice,badge,badgeType,weight,category,active
+1,Fresh Tomatoes,40,50,16% OFF,disc,500 g,vegetables,TRUE
+2,Green Cabbage,25,,,,1 piece,vegetables,TRUE
+3,Cauliflower (Phool Gobi),35,45,22% OFF,disc,1 piece,vegetables,TRUE
+4,Red Chillies,15,,Fresh,fresh,100 g,vegetables,TRUE
+5,Organic Cauliflower,55,65,Organic,organic,1 piece,vegetables,TRUE
+6,Fresh Plums,80,100,20% OFF,disc,500 g,fruits,TRUE
+7,Watermelon,25,,Fresh,fresh,1 kg,fruits,TRUE
+8,Dilicia Dahi,30,,Fresh Daily,fresh,200 g,dairy,TRUE
+9,Country Delight Dahi,45,55,18% OFF,disc,400 g,dairy,TRUE
+10,Dilicia Buttermilk,20,,New,new,500 ml,dairy,TRUE
+11,Govind Milk Powder,280,320,12% OFF,disc,1 kg,dairy,TRUE
+12,Horna Fresh Milk,28,,Best Seller,bestseller,500 ml,dairy,TRUE
+13,Vethaa Nourish Milk,32,38,16% OFF,disc,500 ml,dairy,TRUE
+14,Nandini Paneer,120,140,14% OFF,disc,500 g,dairy,TRUE
+15,Amul Paneer Fresh,90,,Best Seller,bestseller,200 g,dairy,TRUE
+16,Nanak Paneer,160,190,16% OFF,disc,400 g,dairy,TRUE
+17,Brown Sliced Bread,40,45,11% OFF,disc,400 g,bakery,TRUE
+18,Wheat Bread Loaf,55,,Fresh,fresh,500 g,bakery,TRUE
+19,Sourdough Bread,120,140,14% OFF,disc,600 g,bakery,TRUE

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PureFarm — Google Sheet Setup Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;background:#f8f6f0;color:#28375a;line-height:1.6}
+  .top-bar{background:#236849;color:#fff;text-align:center;padding:.5rem;font-size:.82rem}
+  header{background:#fff;border-bottom:1px solid #e8e4dc;padding:1.25rem 2rem;display:flex;align-items:center;gap:1rem}
+  .logo{font-size:1.4rem;font-weight:700;color:#236849}
+  .logo span{color:#0C831F}
+  h1{font-size:1rem;font-weight:500;color:#4a5568;margin-left:auto}
+  .container{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
+  .hero-card{background:linear-gradient(135deg,#236849,#0C831F);border-radius:16px;padding:2.5rem;color:#fff;margin-bottom:2rem;display:flex;gap:2rem;align-items:center}
+  .hero-card h2{font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+  .hero-card p{font-size:.9rem;opacity:.85;line-height:1.7}
+  .hero-icon{font-size:4rem;flex-shrink:0}
+  .step-card{background:#fff;border-radius:12px;border:1px solid #e8e4dc;margin-bottom:1.25rem;overflow:hidden}
+  .step-header{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.5rem;border-bottom:1px solid #f0ece5;background:#faf9f6}
+  .step-num{width:32px;height:32px;border-radius:50%;background:#0C831F;color:#fff;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-title{font-size:.98rem;font-weight:600;color:#28375a}
+  .step-body{padding:1.25rem 1.5rem}
+  .step-body p{font-size:.87rem;color:#4a5568;margin-bottom:.75rem}
+  .step-body p:last-child{margin-bottom:0}
+  .code-block{background:#1e2a3a;color:#a3e8b8;border-radius:8px;padding:1rem 1.25rem;font-family:'Courier New',monospace;font-size:.82rem;margin:.75rem 0;overflow-x:auto;position:relative}
+  .copy-btn{position:absolute;top:.5rem;right:.5rem;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:6px;padding:.25rem .6rem;font-size:.72rem;cursor:pointer;font-family:'Poppins',sans-serif}
+  .copy-btn:hover{background:rgba(255,255,255,.25)}
+  .img-placeholder{background:#f0ece5;border:2px dashed #d0cab8;border-radius:8px;padding:2rem;text-align:center;color:#9ca3af;font-size:.82rem;margin:.75rem 0}
+  .columns-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:.75rem 0}
+  .columns-table th{background:#f0faf4;color:#236849;text-align:left;padding:.55rem .85rem;font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+  .columns-table td{padding:.55rem .85rem;border-bottom:1px solid #f0ece5;color:#4a5568;vertical-align:top}
+  .columns-table tr:last-child td{border-bottom:none}
+  .columns-table .col-name{font-weight:600;color:#28375a;font-family:'Courier New',monospace;font-size:.8rem}
+  .columns-table .required{color:#dc2626;font-size:.7rem;font-weight:700}
+  .columns-table .optional{color:#9ca3af;font-size:.7rem}
+  .badge{display:inline-block;padding:.18rem .55rem;border-radius:50px;font-size:.68rem;font-weight:700}
+  .badge-green{background:#dcfce7;color:#166534}
+  .badge-blue{background:#dbeafe;color:#1e40af}
+  .badge-yellow{background:#fef9c3;color:#854d0e}
+  .badge-red{background:#fee2e2;color:#991b1b}
+  .badge-purple{background:#ede9fe;color:#5b21b6}
+  .alert{border-radius:8px;padding:.85rem 1.1rem;margin:.75rem 0;font-size:.84rem;display:flex;gap:.65rem;align-items:flex-start}
+  .alert-green{background:#f0faf4;border:1px solid #a7f3d0}
+  .alert-yellow{background:#fffbeb;border:1px solid #fcd34d}
+  .alert-icon{font-size:1rem;flex-shrink:0;margin-top:.05rem}
+  .value-examples{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.65rem;margin:.75rem 0}
+  .value-ex{background:#faf9f6;border:1px solid #e8e4dc;border-radius:8px;padding:.65rem .85rem}
+  .value-ex .val{font-family:'Courier New',monospace;font-size:.8rem;font-weight:600;color:#0C831F;margin-bottom:.2rem}
+  .value-ex .desc{font-size:.72rem;color:#9ca3af}
+  .flow-steps{display:flex;gap:0;margin:.75rem 0;flex-wrap:wrap}
+  .flow-step{flex:1;min-width:120px;text-align:center;padding:.65rem .5rem;background:#f0faf4;border:1px solid #a7f3d0;position:relative}
+  .flow-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:#0C831F;font-weight:700;z-index:1}
+  .flow-step:first-child{border-radius:8px 0 0 8px}
+  .flow-step:last-child{border-radius:0 8px 8px 0}
+  .flow-step .fs-icon{font-size:1.4rem;margin-bottom:.25rem}
+  .flow-step .fs-text{font-size:.72rem;font-weight:600;color:#236849}
+  .final-card{background:linear-gradient(135deg,#1a0533,#2d1b69);border-radius:12px;padding:1.75rem;color:#fff;text-align:center;margin-top:2rem}
+  .final-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem}
+  .final-card p{font-size:.85rem;opacity:.75;margin-bottom:1.25rem}
+  .final-btn{display:inline-block;background:#0C831F;color:#fff;border-radius:50px;padding:.65rem 1.75rem;font-size:.88rem;font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="top-bar">🌿 PureFarm — Google Sheet Setup Guide · Keep this file for reference</div>
+
+<header>
+  <div class="logo">PureFarm<span>.</span></div>
+  <h1>Google Sheet Integration Guide</h1>
+</header>
+
+<div class="container">
+
+  <div class="hero-card">
+    <div class="hero-icon">📊</div>
+    <div>
+      <h2>Control your shop from Google Sheets</h2>
+      <p>Change any product price, hide a product, add a sale badge — all by editing your Google Sheet. No coding needed. Changes reflect on your website within seconds of the next page load.</p>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">💡</div>
+      <div class="step-title">How it works</div>
+    </div>
+    <div class="step-body">
+      <div class="flow-steps">
+        <div class="flow-step"><div class="fs-icon">📝</div><div class="fs-text">Edit Sheet</div></div>
+        <div class="flow-step"><div class="fs-icon">☁️</div><div class="fs-text">Auto-publishes</div></div>
+        <div class="flow-step"><div class="fs-icon">🌐</div><div class="fs-text">Site fetches CSV</div></div>
+        <div class="flow-step"><div class="fs-icon">💾</div><div class="fs-text">Saves to cache</div></div>
+        <div class="flow-step"><div class="fs-icon">✅</div><div class="fs-text">Visitor sees update</div></div>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">⚡</span>
+        <span>First visit after your change: shows old data → sheet loads → updates. <strong>Every visit after that: shows new data instantly</strong> because of the localStorage cache.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">Import the template into Google Sheets</div>
+    </div>
+    <div class="step-body">
+      <p>The zip file includes a file called <strong>purefarm_products_sheet.csv</strong> with all 19 products pre-filled. Import it like this:</p>
+      <p>1. Go to <strong>sheets.google.com</strong> → click <strong>Blank spreadsheet</strong></p>
+      <p>2. Go to <strong>File → Import → Upload</strong></p>
+      <p>3. Upload <strong>purefarm_products_sheet.csv</strong></p>
+      <p>4. Choose <strong>"Replace spreadsheet"</strong> and <strong>"Comma"</strong> as separator → click Import</p>
+      <p>5. Rename the tab at the bottom to <strong>products</strong></p>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">⚠️</span>
+        <span>Make sure Row 1 stays as headers: <strong>id, name, price, oldPrice, badge, badgeType, weight, category, active</strong> — do not delete or rename these.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">Publish the sheet as CSV</div>
+    </div>
+    <div class="step-body">
+      <p>1. Click <strong>File → Share → Publish to web</strong></p>
+      <p>2. In the first dropdown select your <strong>products</strong> tab (not "Entire Document")</p>
+      <p>3. In the second dropdown select <strong>Comma-separated values (.csv)</strong></p>
+      <p>4. Click <strong>Publish</strong> → click <strong>OK</strong></p>
+      <p>5. Copy the URL that appears — it will look like this:</p>
+      <div class="code-block" id="urlExample">
+https://docs.google.com/spreadsheets/d/e/2PACX-1v.../pub?gid=0&single=true&output=csv
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://docs.google.com/spreadsheets/d/e/YOUR_ID/pub?gid=0&single=true&output=csv')">Copy</button>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">✓</span>
+        <span>Once published, Google automatically updates the CSV every time you save the sheet. You don't need to republish after changes.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">Paste the URL into common.js</div>
+    </div>
+    <div class="step-body">
+      <p>Open <strong>js/common.js</strong> in any text editor (Notepad, VS Code etc.) and find line 8:</p>
+      <div class="code-block">
+const SHEETS_CSV_URL  = ''; // paste your Google Sheet CSV URL here
+      </div>
+      <p>Replace the empty quotes with your URL:</p>
+      <div class="code-block">
+const SHEETS_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/YOUR_ID/pub?gid=0&single=true&output=csv';
+      </div>
+      <p>Save the file. That's it — the connection is live.</p>
+    </div>
+  </div>
+
+  <!-- COLUMNS REFERENCE -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">📋</div>
+      <div class="step-title">Column reference — what each column does</div>
+    </div>
+    <div class="step-body">
+      <table class="columns-table">
+        <tr>
+          <th>Column</th>
+          <th>What it controls</th>
+          <th>Example values</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td class="col-name">id</td>
+          <td>Matches product in the code. <strong>Never change this.</strong></td>
+          <td>1, 2, 3 … 19</td>
+          <td><span class="required">REQUIRED</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">name</td>
+          <td>Product display name shown on card</td>
+          <td>Fresh Tomatoes</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">price</td>
+          <td>Current selling price in ₹ (number only, no ₹ symbol)</td>
+          <td>40, 120, 280</td>
+          <td><span class="required">REQUIRED</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">oldPrice</td>
+          <td>Original/crossed-out price. Leave empty if no discount.</td>
+          <td>50, 140 or leave blank</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">badge</td>
+          <td>Text shown on the product badge/label</td>
+          <td>16% OFF, Fresh, Organic, Best Seller, New</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">badgeType</td>
+          <td>Controls badge colour. Must match one of the values below.</td>
+          <td>disc, fresh, organic, bestseller, new</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">weight</td>
+          <td>Shown under product name (like Blinkit)</td>
+          <td>500 g, 1 kg, 200 ml, 1 piece</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">category</td>
+          <td>Which sidebar category the product appears in</td>
+          <td>vegetables, fruits, dairy, bakery</td>
+          <td><span class="optional">optional</span></td>
+        </tr>
+        <tr>
+          <td class="col-name">active</td>
+          <td>Show or hide the product on the website</td>
+          <td>TRUE or FALSE</td>
+          <td><span class="required">REQUIRED</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- BADGE TYPES -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">🏷️</div>
+      <div class="step-title">badgeType colour guide</div>
+    </div>
+    <div class="step-body">
+      <p>The <strong>badgeType</strong> column controls the badge colour. Use exactly these values:</p>
+      <div class="value-examples">
+        <div class="value-ex"><div class="val">disc</div><div class="desc">Purple badge · for % OFF discounts</div></div>
+        <div class="value-ex"><div class="val">fresh</div><div class="desc">Blue badge · for Fresh / Daily items</div></div>
+        <div class="value-ex"><div class="val">organic</div><div class="desc">Green badge · for Organic products</div></div>
+        <div class="value-ex"><div class="val">bestseller</div><div class="desc">Yellow badge · for Best Seller</div></div>
+        <div class="value-ex"><div class="val">new</div><div class="desc">Light green badge · for New arrivals</div></div>
+      </div>
+      <p>If you leave <strong>badge</strong> empty, no badge appears at all.</p>
+    </div>
+  </div>
+
+  <!-- COMMON TASKS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">✏️</div>
+      <div class="step-title">Common tasks — what to do in the sheet</div>
+    </div>
+    <div class="step-body">
+      <p><strong>Change a price:</strong> Just type the new number in the <code>price</code> column. Save. Done.</p>
+      <p><strong>Add a sale / discount:</strong> Set <code>oldPrice</code> to the original price, set <code>price</code> to the new lower price, set <code>badge</code> to <em>"20% OFF"</em> (or calculate the %) and <code>badgeType</code> to <em>"disc"</em>.</p>
+      <p><strong>Remove a discount:</strong> Clear <code>oldPrice</code>, clear <code>badge</code> and <code>badgeType</code>.</p>
+      <p><strong>Hide a product (out of season / out of stock):</strong> Change <code>active</code> to <strong>FALSE</strong>. Product disappears from the site.</p>
+      <p><strong>Show it again:</strong> Change <code>active</code> back to <strong>TRUE</strong>.</p>
+      <p><strong>Mark as Best Seller:</strong> Set <code>badge</code> to <em>"Best Seller"</em> and <code>badgeType</code> to <em>"bestseller"</em>.</p>
+      <p><strong>Change weight shown on card:</strong> Edit the <code>weight</code> column e.g. <em>"250 g"</em> or <em>"2 kg"</em>.</p>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">⚠️</span>
+        <span>After every change, wait ~1 minute for Google to update the published CSV. Then open your website — the first load may show old data for 2-3 seconds while the sheet is fetched. From the second load onwards it's instant.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADDING NEW PRODUCTS -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">➕</div>
+      <div class="step-title">Adding a completely new product</div>
+    </div>
+    <div class="step-body">
+      <p>New products added only in the sheet won't have images (since images are in the code). For full new products with images, you need to:</p>
+      <p><strong>Option A — Quick (no image):</strong> Add a new row in the sheet with a new id (e.g. 20), fill all columns. Product will appear with a broken image or placeholder. Good for testing prices.</p>
+      <p><strong>Option B — Full (with image):</strong> Add the product image to the <code>imgs/</code> folder, add the product entry to <code>PRODUCT_CATALOGUE</code> in <code>common.js</code>, then control price/active from the sheet as normal.</p>
+      <div class="alert alert-green">
+        <span class="alert-icon">💡</span>
+        <span>For most day-to-day tasks (price changes, hiding products, adding badges) you only ever need to touch the Google Sheet — never the code.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP NUMBER -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">📱</div>
+      <div class="step-title">Other things to update in common.js</div>
+    </div>
+    <div class="step-body">
+      <p>Open <strong>js/common.js</strong> and update these two lines at the very top:</p>
+      <div class="code-block">
+const WHATSAPP_NUMBER = '919373828887';  // ← your number with country code, no + or spaces
+const SHOP_NAME       = 'PureFarm.';    // ← your shop name (appears in WhatsApp messages)
+      </div>
+      <p>Replace <strong>919373828887</strong> with your own WhatsApp number. Format: <em>91 followed by 10-digit number</em>, no spaces, no +.</p>
+      <p>Example: if your number is 98765 43210 → write <strong>919876543210</strong></p>
+    </div>
+  </div>
+
+  <div class="final-card">
+    <h3>🎉 You're all set!</h3>
+    <p>Import the CSV → Publish to web → Paste URL in common.js → Done. Your shop is now connected to Google Sheets.</p>
+    <a href="pages/shop.html" class="final-btn">View Your Shop →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

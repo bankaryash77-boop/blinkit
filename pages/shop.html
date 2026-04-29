@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PureFarm — Fresh vegetables, fruits and dairy delivered daily in Pune" />
+  <title>Shop — PureFarm.</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<div class="promo-strip">🌿 Free delivery above <strong>₹500</strong> · Order before 8pm · Morning delivery</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <button class="nav-hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="../index.html" class="nav-logo">PureFarm<span>.</span></a>
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Search tomatoes, milk, paneer…" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+   
+  </ul>
+  <button class="nav-cart" data-open-cart>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39A2 2 0 0 0 9.68 16h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <span class="cart-label">Cart</span>
+    <span class="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-head">
+      <div class="mobile-menu-logo">PureFarm<span>.</span></div>
+      <button class="mobile-menu-close" id="menuCloseBtn">✕</button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="mobile-cats-title">Browse Categories</div>
+    <button class="mobile-cat-btn" onclick="setMobileCat('all')"><img src="../imgs/veg1.png" alt="" />All Items</button>
+    <button class="mobile-cat-btn" onclick="setMobileCat('vegetables')"><img src="../imgs/cauliflower.jpg" alt="" />Vegetables</button>
+    <button class="mobile-cat-btn" onclick="setMobileCat('fruits')"><img src="../imgs/watermelon.png" alt="" />Fruits</button>
+    <button class="mobile-cat-btn" onclick="setMobileCat('dairy')"><img src="../imgs/dahi2.jpg" alt="" />Dairy</button>
+    <button class="mobile-cat-btn" onclick="setMobileCat('bakery')"><img src="../imgs/bread1.jpg" alt="" />Bakery</button>
+  </div>
+</div>
+
+<!-- SHOP LAYOUT -->
+<div class="shop-layout">
+  <aside class="cat-sidebar" id="catSidebar"></aside>
+  <main class="products-area">
+    <select class="products-sort" id="sortSelect">
+      <option value="featured">Sort: Featured</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
+      <option value="rating">Top Rated</option>
+    </select>
+    <div class="products-header">
+      <span class="products-title" id="sectionTitle">All Items</span>
+      <span class="products-meta">Showing <strong id="resultCount">0</strong> items</span>
+    </div>
+    <div class="products-grid" id="shopGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">PureFarm<span>.</span></div>
+        <p class="footer-desc">Farm-fresh vegetables, fruits and dairy delivered to your door every morning. Proudly serving Pune.</p>
+        <div class="footer-nl">
+          <input type="email" id="nlEmail" placeholder="Get weekly deals" />
+          <button id="nlBtn">Subscribe</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Categories</div>
+        <ul class="footer-links">
+          <li><a href="shop.html?cat=vegetables">Vegetables</a></li>
+          <li><a href="shop.html?cat=fruits">Fruits</a></li>
+          <li><a href="shop.html?cat=dairy">Dairy</a></li>
+          <li><a href="shop.html?cat=bakery">Bakery</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Help</div>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="about.html">About PureFarm</a></li>
+          <li><a href="https://wa.me/919373828887" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 PureFarm. All rights reserved.</span>
+      <span class="footer-copy">🌿 Fresh · Natural · Local</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919373828887" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="../js/common.js"></script>
+<script src="../js/shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Hamburger menu
+  const menu = document.getElementById('mobileMenu');
+  document.getElementById('hamburgerBtn').addEventListener('click', () => menu.classList.add('open'));
+  document.getElementById('menuCloseBtn').addEventListener('click', () => menu.classList.remove('open'));
+  menu.addEventListener('click', e => { if (e.target === menu) menu.classList.remove('open'); });
+
+  // Navbar search → filter
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') applyFilters();
+  });
+
+  // Pre-fill search from URL
+  const params = new URLSearchParams(window.location.search);
+  const sq = params.get('search');
+  if (sq) document.getElementById('searchInput').value = sq;
+
+  // Newsletter
+  document.getElementById('nlBtn').addEventListener('click', () => {
+    const em = document.getElementById('nlEmail').value.trim();
+    if (!em) return;
+    window.open('https://wa.me/919373828887?text=' + encodeURIComponent('📧 Newsletter — PureFarm.\n\nEmail: ' + em), '_blank');
+    document.getElementById('nlEmail').value = '';
+  });
+});
+
+function setMobileCat(cat) {
+  document.getElementById('mobileMenu').classList.remove('open');
+  // Trigger category change in shop.js
+  activeCategory = cat;
+  document.querySelectorAll('.cat-item').forEach(i => {
+    i.classList.toggle('active', i.dataset.cat === cat);
+  });
+  const cats = {all:'All Items',vegetables:'Vegetables',fruits:'Fruits',dairy:'Dairy',bakery:'Bakery'};
+  const titleEl = document.getElementById('sectionTitle');
+  if (titleEl) titleEl.textContent = cats[cat] || 'All Items';
+  applyFilters();
+}
+</script>
+</body>
+</html>
